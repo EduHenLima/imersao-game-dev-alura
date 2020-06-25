@@ -1,18 +1,25 @@
 class Personagem extends Animacao{
 
-  constructor(matriz, imagem, x, largura, altura, larguraSprite, alturaSprite) {
-    super(matriz, imagem, x, largura, altura, larguraSprite, alturaSprite);
+  constructor(matriz, imagem, x, variacaoY, largura, altura, larguraSprite, alturaSprite) {
+    super(matriz, imagem, x,variacaoY, largura, altura, larguraSprite, alturaSprite);
 
-    this.yBase = height - this.altura;
+    this.variacaoY = variacaoY;
+    this.yBase = height - this.altura - this.variacaoY;
     this.y = this.yBase;
+    
     this.velocidadePulo = 0;
-    this.gravidade = 3
+    this.gravidade = 6
+    this.alturaPulo = -50
+    this.pulos = 0
     
   }
   
   // função utilizada para fazer o pulo
   pula(){
-    this.velocidadePulo = - 30;
+    if(this.pulos < 2){
+      this.velocidadePulo = this.alturaPulo;
+      this.pulos++
+    }
   }
   
   // função utilizada para aplicar a gravidade do pulo
@@ -22,15 +29,16 @@ class Personagem extends Animacao{
     
     if(this.y > this.yBase){
       this.y = this.yBase;
+      this.pulos = 0;
     }
   }
 
-  estaColidindo(){
+  estaColidindo(inimigo){
     // Utilizamos isso para Debbugar as posiçes que estamos passando
     // noFill();
     // rect(this.x,this.y,this.largura,this.altura)
     // rect(inimigo.x,inimigo.y,inimigo.largura,inimigo.altura)
-    const precisao = .7;
+    const precisao = .7
     const colisao = collideRectRect(
       this.x,
       this.y,
@@ -40,7 +48,7 @@ class Personagem extends Animacao{
       inimigo.y,
       inimigo.largura * precisao,
       inimigo.altura * precisao
-    )
+    );
     
     return colisao;
   }
