@@ -1,9 +1,4 @@
-<p>Especificações</p>
-<i>
-Subir o projeto dentro do GitHub e adicionar dentro do codePen como portifolio.
- Acredito que isso vai ajudar bastante em futuros desenvolvimentos.
-<hr>
-As configurações do game ficam dentro da fita.json onde  mesmo é configuravel.
+# Imersão Game Dev Alura
 
 <b>Links Uteis:</b>
 * Respositório: 
